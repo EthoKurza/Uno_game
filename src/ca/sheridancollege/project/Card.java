@@ -20,7 +20,37 @@ public abstract class Card
      * @return a String representation of a card. Could be an UNO card, a regular playing card etc.
      */
     
+        public enum Colour {RED,YELLOW,GREEN,BLUE};
+        public enum Value{ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, REVERSE, SKIP, DRAW_TWO, DRAW_FOUR, WILDCARD };
+        private final Colour colour;
+        private final Value value;
+        
+        //Constructor
+        public Card(Colour c, Value v){
+            this.colour = c;
+            this.value = v;
+        }
+        
     @Override
     public abstract String toString();
-    
+
+	public Colour getColour() {
+		return this.colour;
+	}
+
+	/**
+	 * 
+	 * @param colour
+	 */
+
+
+	public Value getValue() {
+		return this.value;
+	}
+
+	/**
+	 * 
+	 * @param value
+	 */
+
 }
