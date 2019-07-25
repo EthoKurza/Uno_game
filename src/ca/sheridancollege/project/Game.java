@@ -52,6 +52,14 @@ public class Game
         
     }
     
+    public void placeCard(Card card, Card pcard){
+        
+        
+    }
+    
+    public void pickupCard(Card card, Card pcard){
+        
+    }
     
     
     /**
