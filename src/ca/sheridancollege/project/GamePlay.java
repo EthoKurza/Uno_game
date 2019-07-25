@@ -26,19 +26,19 @@ public class GamePlay {
         System.out.println("Error minimum of 2 players are needed to start the game.");
         System.exit(0);                             //terminate program
     }
-    Game uno = new Game(uno);
-    /* 
+    //Game uno = new Game("uno");
+    
     Player players[] = new Player[numPlayers];      //initialize player array
     for(int i=0; i < players.length; i++){
         System.out.printf("Enter player %d name: ",i+1);
         String pName = sc.next();                   //get player's name
-        players[i].setPlayerID(pName);
+        players[i] = new Player(pName);
         
-        
+        //System.out.printf("Player %d name: %s \n",i+1,players[i].getPlayerID()); //Test to see if player names are being stored
         //generate cards for each player
         
     }//end of for loop
-    */
+    
     
     
     //Start game
