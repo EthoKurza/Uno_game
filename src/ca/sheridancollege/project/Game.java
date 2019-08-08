@@ -49,12 +49,7 @@ public class Game
         this.players = players;
     }
     
-    public void checkCards(Card card,Card pcard){
-        
-        
-    }
-    
-    public boolean placeCard(Card card, Card pcard){
+    public boolean checkCards(Card card,Card pcard){
          /*
         if (this.color == c)
             return true;
@@ -74,13 +69,19 @@ public class Game
              return true;
          }
         return false;
-    }
-    
-    public void pickupCard(Card card, Card pcard){
         
     }
     
+    public Card placeCard(Card card){
+       return card;
+    }
     
+    public Player pickupCard(Card card, Player pdeck){
+        pdeck.addPlayerCards(card);
+        return pdeck;
+    }
+    
+
     /**
      * Play the game. This might be one method or many method calls depending
      * on your game.

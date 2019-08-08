@@ -49,10 +49,22 @@ public class Player
     
     //get player's cards
     public void getPlayerCards(){
+        int i=1;
         for(Card c: pCards){
-            System.out.println(c.getColour() + "  " + c.getValue());
+            System.out.println("("+i+")"+c.getColour() + "  " + c.getValue());
+            i++;
         }
         //return pCards;
+    }
+    
+    public Card getPlayerCard(int cPlace){
+        Card tempCard = pCards.get(cPlace);
+        
+        return tempCard;
+    }
+    
+    public int numPlayerCards(){
+        return pCards.size();
     }
     /**
      * The method to be instantiated when you subclass the Player class

@@ -33,13 +33,13 @@ public class GamePlay {
     }//end of while loop;
     
     
-    //Game uno = new Game("uno");
+    Game uno = new Game("uno");
     
     //generate deck of cards
     GroupOfCards gameDeck = new GroupOfCards();  
     gameDeck.generateDeck();
-    //gameDeck.shuffle();
-    gameDeck.showCards();
+    gameDeck.shuffle();
+    //gameDeck.showCards();
     
     Player players[] = new Player[numPlayers];      //initialize player array
     
@@ -64,26 +64,64 @@ public class GamePlay {
     
     
     //Start game
+        Card topCard = gameDeck.dCard();    //set default top card
+        while(true){    
+            
+            //let each player play
+            for(int i=0;i<numPlayers;i++){
+                //get top card
+                System.out.println("Top Card: "+topCard.getColour()+" "+topCard.getValue());
+                
+                //check player's cards
+                System.out.println("-----------------------------------");
+                System.out.println(players[i].getPlayerID()+" Turn");
+                System.out.println(players[i].getPlayerID()+"'s Cards: \n");
+                players[i].getPlayerCards();
+
+                //determine what the player wants to do (Eg. place/pick up card)
+                System.out.println("-----------");
+                System.out.println("(1) Place Card \n(2) Pickup Card \n");
+                int decide = 0;
+                decide = sc.nextInt();
+                switch(decide){
+                    case 1:
+                        System.out.println("What card do you want to place?");
+                        int cPlace = sc.nextInt();
+                        cPlace--;
+                        if(uno.checkCards(topCard,players[i].getPlayerCard(cPlace))){
+                            //placecard function
+                            topCard = uno.placeCard(players[i].getPlayerCard(cPlace));
+                        }
+                        else{
+                            System.out.println("Card is invalid, please pick another one");
+                        }
+                        break;
+                    case 2:
+
+                        players[i].addPlayerCards(gameDeck.dCard());
+                        break;
+
+                    default:
+                        System.out.println("Error, that is not a valid option");
+                        break;
+
+                }
+                //check if player has 0 cards in their hand
+                    //end game and declare player as winner
+                if(players[i].numPlayerCards()==0){
+                    System.out.println(players[i].getPlayerID()+" is the Winner!!!!!");
+                    System.out.println("Program shutting down....");
+                    System.exit(0);
+                }//end of if statment
+                else if(players[i].numPlayerCards()==1){
+                    System.out.println(players[i].getPlayerID()+" is on UNO!!");
+                }
+
+                
+            }//end of for loop
+        }//end of while loop
         
-        //check first/top card
-        Card topCard = gameDeck.dCard();
-        System.out.println("Top Card: "+topCard.getColour()+" "+topCard.getValue());
-        //let each player play
-        for(int i=0;i<numPlayers;i++){
-            
-            //check player's cards
-            System.out.println(players[i].getPlayerID()+" Turn");
-            System.out.println(players[i].getPlayerID()+"'s Cards: \n");
-            players[i].getPlayerCards();
-            
-            //determine what the player wants to do (Eg. place/pick up card)
-            
-            
-            
-            //check if player has 0 cards in their hand
-                //end game and declare player as winner
-            
-        }//end of if statement
-    
+        
+        
     }//end of main method/function
 }//end of class
