@@ -43,6 +43,7 @@ public class GamePlay {
     
     //Start game
         
+        //check first/top card
         
         
         //let each player play

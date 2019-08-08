@@ -52,9 +52,26 @@ public class Game
         
     }
     
-    public void placeCard(Card card, Card pcard){
-        
-        
+    public boolean placeCard(Card card, Card pcard){
+         /*
+        if (this.color == c)
+            return true;
+        else if (this.value == o.value)
+            return true;
+        else if (this.color == "none") // Wild cards
+            return true;
+        return false;      
+        */
+         if(card.getColour() == pcard.getColour()){
+             return true;
+         }
+         else if(card.getValue() == pcard.getValue()){
+             return true;
+         }
+         else if (pcard.getValue()== Card.Value.WILDCARD){
+             return true;
+         }
+        return false;
     }
     
     public void pickupCard(Card card, Card pcard){
