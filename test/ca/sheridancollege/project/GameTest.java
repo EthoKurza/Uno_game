@@ -90,7 +90,7 @@ public class GameTest {
     public void testCWildGood() {
         System.out.println("cWild Good");
         Card card = new Card(Card.Colour.RED, Card.Value.WILDCARD);
-        Game instance = null;
+        Game instance = new Game("uno");
         boolean expResult = true;
         boolean result = instance.cWild(card);
         assertEquals(expResult, result);
@@ -100,7 +100,7 @@ public class GameTest {
     public void testCWildBad() {
         System.out.println("cWild Bad");
         Card card = new Card(Card.Colour.BLUE, Card.Value.FIVE);
-        Game instance = null;
+        Game instance = new Game("uno");
         boolean expResult = false;
         boolean result = instance.cWild(card);
         assertEquals(expResult, result);
@@ -110,7 +110,7 @@ public class GameTest {
     public void testCWildBoundary() {
         System.out.println("cWild Boundary");
         Card card = new Card(Card.Colour.BLUE, Card.Value.WILDCARD);
-        Game instance = null;
+        Game instance = new Game("uno");
         boolean expResult = true;
         boolean result = instance.cWild(card);
         assertEquals(expResult, result);
@@ -126,7 +126,7 @@ public class GameTest {
         System.out.println("cReverse Good");
         Card card = new Card(Card.Colour.BLUE, Card.Value.REVERSE);
         boolean order = false;
-        Game instance = null;
+        Game instance = new Game("uno");
         boolean expResult = true;
         boolean result = instance.cReverse(card, order);
         assertEquals(expResult, result);
@@ -138,7 +138,7 @@ public class GameTest {
         System.out.println("cReverse Bad");
         Card card = new Card(Card.Colour.GREEN, Card.Value.ZERO);
         boolean order = false;
-        Game instance = null;
+        Game instance = new Game("uno");
         boolean expResult = false;
         boolean result = instance.cReverse(card, order);
         assertEquals(expResult, result);
@@ -150,7 +150,7 @@ public class GameTest {
         System.out.println("cReverse Boundary");
         Card card = new Card(Card.Colour.RED, Card.Value.REVERSE);
         boolean order = false;
-        Game instance = null;
+        Game instance = new Game("uno");
         boolean expResult = true;
         boolean result = instance.cReverse(card, order);
         assertEquals(expResult, result);
@@ -165,7 +165,7 @@ public class GameTest {
     public void testCPlusGood() {
         System.out.println("cPlus Good");
         Card card = new Card(Card.Colour.BLUE, Card.Value.DRAW_FOUR);
-        Game instance = null;
+        Game instance = new Game("uno");
         boolean expResult = true;
         boolean result = instance.cPlus(card);
         assertEquals(expResult, result);
@@ -176,7 +176,7 @@ public class GameTest {
     public void testCPlusBad() {
         System.out.println("cPlus Bad");
         Card card = new Card(Card.Colour.YELLOW, Card.Value.WILDCARD);
-        Game instance = null;
+        Game instance = new Game("uno");
         boolean expResult = false;
         boolean result = instance.cPlus(card);
         assertEquals(expResult, result);
@@ -187,7 +187,7 @@ public class GameTest {
     public void testCPlusBoundary() {
         System.out.println("cPlus Boundary");
         Card card = new Card(Card.Colour.GREEN, Card.Value.SKIP);
-        Game instance = null;
+        Game instance = new Game("uno");
         boolean expResult = true;
         boolean result = instance.cPlus(card);
         assertEquals(expResult, result);
