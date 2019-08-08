@@ -46,6 +46,9 @@ public class Player
     public void addPlayerCards(Card pCard){
         pCards.add(pCard);
     }
+    public void removePlayerCards(int cPlace){
+        pCards.remove(cPlace);
+    }
     
     //get player's cards
     public void getPlayerCards(){

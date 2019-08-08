@@ -85,17 +85,30 @@ public class GamePlay {
                 decide = sc.nextInt();
                 switch(decide){
                     case 1:
-                        System.out.println("What card do you want to place?");
-                        int cPlace = sc.nextInt();
-                        cPlace--;
-                        if(uno.checkCards(topCard,players[i].getPlayerCard(cPlace))){
-                            //placecard function
-                            topCard = uno.placeCard(players[i].getPlayerCard(cPlace));
-                        }
-                        else{
-                            System.out.println("Card is invalid, please pick another one");
-                        }
+                        boolean quit = false;
+                        while(!quit==true){   
+                            System.out.println("What card do you want to place?");
+                            int cPlace = sc.nextInt();
+                            cPlace--;
+                            if(uno.checkCards(topCard,players[i].getPlayerCard(cPlace))){
+                                topCard = uno.placeCard(players[i].getPlayerCard(cPlace));
+                                players[i].removePlayerCards(cPlace);                       //remove card from player's hand
+                                quit=true;
+                            }
+                            else{
+                                System.out.println("Card is invalid, please pick another one");
+                                System.out.println("Quit Placing Cards and pick up a card? \n(1)Yes \n(2)No");
+                                int qPlacing = sc.nextInt();
+                                if(qPlacing == 1){
+                                    players[i].addPlayerCards(gameDeck.dCard());
+                                    quit=true;
+                                }
+                            }
+                           
+                            
+                        }//end of while loop    
                         break;
+                        
                     case 2:
 
                         players[i].addPlayerCards(gameDeck.dCard());
@@ -114,7 +127,9 @@ public class GamePlay {
                     System.exit(0);
                 }//end of if statment
                 else if(players[i].numPlayerCards()==1){
+                    System.out.println("***********************");
                     System.out.println(players[i].getPlayerID()+" is on UNO!!");
+                    System.out.println("***********************");
                 }
 
                 
