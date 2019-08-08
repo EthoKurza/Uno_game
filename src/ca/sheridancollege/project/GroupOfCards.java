@@ -19,20 +19,43 @@ public class GroupOfCards
    
     //The group of cards, stored in an ArrayList
     private ArrayList <Card> cards;
+    private ArrayList <Card> usedCards;
     private int size;//the size of the grouping
+    private int aNum=0;
     
     public GroupOfCards(int givenSize)
     {
         size = givenSize;
+        cards = new ArrayList<Card>();
+        usedCards = new ArrayList<Card>();
+    }
+    GroupOfCards(){
+        size=60;
+        cards = new ArrayList<Card>();
+        usedCards = new ArrayList<Card>();
+        //shuffle();
     }
     
     /**
      * A method that will get the group of cards as an ArrayList
      * @return the group of cards.
      */
-    public ArrayList<Card> showCards()
+    public void showCards()
     {
-        return cards;
+        for(Card c: cards){
+            System.out.println(c.getColour() + "  " + c.getValue());
+        }
+    }
+    
+    public Card dCard(){
+        Card result = null;
+        if(aNum <60){
+            result = cards.get(aNum);
+            usedCards.add(result);
+            cards.remove(aNum);
+        }
+        aNum++;
+        return result;
     }
     
     public void shuffle()
@@ -54,4 +77,20 @@ public class GroupOfCards
         size = givenSize;
     }
     
+    
+    public void generateDeck()
+        {
+                //int countCards = 0;
+                Card tempCard;
+		for(Card.Colour c: Card.Colour.values())
+                {
+                    for(Card.Value v: Card.Value.values())
+                    {
+                        tempCard = (new Card(c,v));
+                        //System.out.println(tempCard.getColour()+" + "+tempCard.getValue());       //test to see if cards are being generated
+                        cards.add(tempCard);
+                        //countCards++;
+                    }
+                }//end outter for
+        }//end method
 }//end class
