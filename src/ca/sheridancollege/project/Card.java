@@ -24,11 +24,27 @@ public class Card
         public enum Value{ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, REVERSE, SKIP, DRAW_TWO, DRAW_FOUR, WILDCARD };
         private final Colour colour;
         private final Value value;
+	private static int cardtype;
+
         
         //Constructor
         public Card(Colour c, Value v){
-            this.colour = c;
-            this.value = v;
+		this.colour = c;
+		this.value = v;
+                if(v == value.DRAW_TWO)
+                {
+                        cardtype=1;
+                }
+		else if(v == value.DRAW_FOUR)
+		{
+			cardtype=2;
+		}
+		else
+		{
+			cardtype=0;
+		}
+
+           
         }
         
     
@@ -46,6 +62,15 @@ public class Card
 	public Value getValue() {
 		return this.value;
 	}
+
+    /**
+     * @return the cardtype
+     */
+    public static int getCardtype() {
+        return cardtype;
+    }
+
+    
 
 	/**
 	 * 

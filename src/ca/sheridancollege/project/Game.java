@@ -6,6 +6,7 @@
 package ca.sheridancollege.project;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * The class that models your game. You should create a more specific
@@ -72,6 +73,34 @@ public class Game
         
     }
     
+    public boolean cWild(Card card){
+        boolean result = false;
+        if(card.getValue() == Card.Value.WILDCARD){
+            result = true;
+        }
+        return result;
+    }
+    public boolean cReverse(Card card,boolean order){         //check reverse
+        boolean result = order;
+        if((card.getValue() == Card.Value.REVERSE)&&(order==false)){
+            result = true;
+        }
+        else if((card.getValue() == Card.Value.REVERSE)&&(order==true)){
+            result = false;
+        }
+        
+        return result;
+    }
+    public boolean cPlus(Card card){
+        boolean result=false;
+        if((card.getValue()==Card.Value.DRAW_FOUR)|| (card.getValue()==Card.Value.DRAW_TWO))
+            result = true;
+        else if(card.getValue() == Card.Value.SKIP){
+            result = true;
+        }
+        return result;    
+    }
+    
     public Card placeCard(Card card){
        return card;
     }
@@ -81,7 +110,32 @@ public class Game
         return pdeck;
     }
     
-
+    public int cNumPlayer(){
+        Scanner sc = new Scanner(System.in);
+        String numPlayers1="0";
+        int numPlayers=0;
+        while(true){
+            System.out.println("Enter number of players: ");
+            numPlayers1 = sc.nextLine();                  //get number of players
+            System.out.println("String entered is: "+numPlayers1);
+            try {
+                numPlayers = Integer.parseInt(numPlayers1);	
+                System.out.println("number of players is: "+numPlayers);
+                //check if there are a minimum of 2 players playing
+                if(numPlayers < 2){
+                    System.out.println("Error minimum of 2 players are needed to start the game.");
+                    //System.exit(0);                             //terminate program
+                }
+                else{
+                    break;      //break out of loop
+                }
+            } 
+            catch (NumberFormatException | NullPointerException nfe) {
+                System.out.println("Error: Enter a number value");
+            }
+        }//end of while loop
+        return numPlayers;
+    }
     /**
      * Play the game. This might be one method or many method calls depending
      * on your game.

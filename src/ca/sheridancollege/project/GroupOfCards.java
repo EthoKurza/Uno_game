@@ -20,8 +20,8 @@ public class GroupOfCards
     //The group of cards, stored in an ArrayList
     private ArrayList <Card> cards;
     private ArrayList <Card> usedCards;
-    private int size;//the size of the grouping
-    private int aNum=0;
+    private int size;       //the size of the grouping
+    private int aNum=0;     //number of cards used counter
     
     public GroupOfCards(int givenSize)
     {
@@ -29,7 +29,7 @@ public class GroupOfCards
         cards = new ArrayList<Card>();
         usedCards = new ArrayList<Card>();
     }
-    GroupOfCards(){
+    GroupOfCards(){     //a default constructor
         size=60;
         cards = new ArrayList<Card>();
         usedCards = new ArrayList<Card>();
@@ -49,10 +49,21 @@ public class GroupOfCards
     
     public Card dCard(){
         Card result = null;
-        if(aNum <60){
-            result = cards.get(aNum);
+        if(aNum <size){
+            result = cards.get(0);  //get top card
             usedCards.add(result);
-            cards.remove(aNum);
+            cards.remove(0);        //remove top card
+        }
+        else{       //if all the cards in the deck have been used up this will reset the cards and shuffle it.
+            aNum=0;                 //reset counter
+            cards = usedCards;
+            usedCards.clear();      //clear/reset the whole usedCard arraylist
+            shuffle();
+            
+            //get a card
+            result = cards.get(0);
+            usedCards.add(result);
+            cards.remove(0);
         }
         aNum++;
         return result;
@@ -88,8 +99,8 @@ public class GroupOfCards
                     {
                         tempCard = (new Card(c,v));
                         //System.out.println(tempCard.getColour()+" + "+tempCard.getValue());       //test to see if cards are being generated
-                        cards.add(tempCard);
-                        //countCards++;
+                        cards.add(tempCard);        //add newly generated card to the deck of cards
+                        
                     }
                 }//end outter for
         }//end method
